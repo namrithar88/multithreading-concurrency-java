@@ -6,6 +6,12 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/*
+ * Steps to create a ThreadPool/use ExecutorService:
+ * 1) Create a ThreadPool using Executors
+ * 2) Create task (Task will implement Runnable. Include the logic you want to run such as calling addOn method inside run())
+ * 3) Call service.execute(task)
+ */
 public class ExecutorServiceExample {
     public void runExecutorServiceExample() {
 
@@ -23,9 +29,10 @@ public class ExecutorServiceExample {
         productCostList.put("Glasses", 23.0);
 
         //Create executor + thread pool
+        //Alternatively, you can directly create the thread pool using new ThreadPoolExecutor()
         ExecutorService service = Executors.newFixedThreadPool(5);
-        List<Task> listOfTasks = TaskCreator.createListOfTasks(productCostList);
-        for(Task task : listOfTasks) {
+        List<RunnableTask> listOfTasks = RunnableTaskCreator.createListOfTasks(productCostList);
+        for(RunnableTask task : listOfTasks) {
             service.execute(task);
         }
         service.shutdown();

@@ -2,11 +2,11 @@ package com.practice.multithreading.executorservice;
 
 import com.practice.multithreading.racecondition.AmazonAddOnCalculator;
 
-public class Task implements Runnable {
+public class RunnableTask implements Runnable {
     private String productName;
     private Double cost;
 
-    public Task(String productName, Double cost) {
+    public RunnableTask(String productName, Double cost) {
         this.productName = productName;
         this.cost = cost;
     }

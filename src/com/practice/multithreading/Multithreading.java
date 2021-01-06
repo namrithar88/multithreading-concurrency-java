@@ -3,6 +3,7 @@ package com.practice.multithreading;
 import com.practice.multithreading.domain.MobileInformation;
 import com.practice.multithreading.dto.MobileStatsDTO;
 import com.practice.multithreading.executorservice.ExecutorServiceExample;
+import com.practice.multithreading.future.FutureExample;
 import com.practice.multithreading.racecondition.RaceConditionExample;
 import com.practice.multithreading.service.AmazonMobileInformationProvider;
 import com.practice.multithreading.service.FBMarketPlaceMobileInformationProvider;
@@ -55,5 +56,9 @@ public class Multithreading {
         System.out.println("Executor service");
         ExecutorServiceExample executorServiceExample = new ExecutorServiceExample();
         executorServiceExample.runExecutorServiceExample();
+
+        System.out.println("Future example");
+        FutureExample futureExample = new FutureExample();
+        futureExample.runFutureExample();
     }
 }

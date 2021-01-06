@@ -2,6 +2,7 @@ package com.practice.multithreading;
 
 import com.practice.multithreading.domain.MobileInformation;
 import com.practice.multithreading.dto.MobileStatsDTO;
+import com.practice.multithreading.racecondition.RaceConditionExample;
 import com.practice.multithreading.service.AmazonMobileInformationProvider;
 import com.practice.multithreading.service.FBMarketPlaceMobileInformationProvider;
 import com.practice.multithreading.service.MobileInformationProviderService;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class Multithreading {
     public static void main(String args[]) throws InterruptedException {
-
+/*
         MobileInformationProviderService mobileInfoProviderAmazon = new AmazonMobileInformationProvider();
         MobileInformationProviderService mobileInfoProviderFB = new FBMarketPlaceMobileInformationProvider();
         List<Thread> mobileInfoProviderThreads = new ArrayList<>();
@@ -46,6 +47,8 @@ public class Multithreading {
         mobileStatsDTO.getMobileInformationList().forEach((infoProvider, mobileInformation) -> {
             System.out.println(" INFO PROVIDER " + infoProvider);
             System.out.println(" COST " + mobileInformation.getCost() + " DISCOUNT " + mobileInformation.getDiscount());
-        });
+        });*/
+        RaceConditionExample raceConditionExample = new RaceConditionExample();
+        raceConditionExample.runExample();
     }
 }

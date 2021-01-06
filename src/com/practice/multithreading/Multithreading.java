@@ -2,16 +2,15 @@ package com.practice.multithreading;
 
 import com.practice.multithreading.domain.MobileInformation;
 import com.practice.multithreading.dto.MobileStatsDTO;
+import com.practice.multithreading.executorservice.ExecutorServiceExample;
 import com.practice.multithreading.racecondition.RaceConditionExample;
 import com.practice.multithreading.service.AmazonMobileInformationProvider;
 import com.practice.multithreading.service.FBMarketPlaceMobileInformationProvider;
 import com.practice.multithreading.service.MobileInformationProviderService;
 import com.practice.multithreading.thread.MobileInformationProviderThread;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class Multithreading {
     public static void main(String args[]) throws InterruptedException {
@@ -48,7 +47,13 @@ public class Multithreading {
             System.out.println(" INFO PROVIDER " + infoProvider);
             System.out.println(" COST " + mobileInformation.getCost() + " DISCOUNT " + mobileInformation.getDiscount());
         });*/
-        RaceConditionExample raceConditionExample = new RaceConditionExample();
-        raceConditionExample.runExample();
+
+        //System.out.println("Race condition");
+        //RaceConditionExample raceConditionExample = new RaceConditionExample();
+        //raceConditionExample.runExample();
+
+        System.out.println("Executor service");
+        ExecutorServiceExample executorServiceExample = new ExecutorServiceExample();
+        executorServiceExample.runExecutorServiceExample();
     }
 }

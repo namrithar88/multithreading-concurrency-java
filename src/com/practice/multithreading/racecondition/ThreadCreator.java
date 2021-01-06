@@ -12,35 +12,20 @@ public class ThreadCreator {
 
             //Create Thread1 - calculate the add on for a book costing 50$
             Thread bookAddOnCalculatorThread = new Thread(() -> {
-                Double cost = 50.0;
-                addOnCalculator.setProductCost(cost);
-                System.out.println("Calculating add on for book " + cost);
-                //Thread 1 unexpectedly gets delayed by 20 secs due to some long running operation
-                try {
-                    Thread.currentThread().sleep(20000);
-                } catch (InterruptedException e) {
-                    System.out.println("Interrupted exception in " + Thread.currentThread().getName());
-                    e.printStackTrace();
-                    return;
-                }
-                System.out.println("Book - cost: " + addOnCalculator.getProductCost());
-                System.out.println("Book - delivery charge: " + addOnCalculator.getDeliveryCharge());
-                System.out.println("Book - tax: " + addOnCalculator.getTax());
-                System.out.println("Book - discount: " + addOnCalculator.getDiscount());
+                Double costBook = 50.0;
+                System.out.println("Calculating total cost for book " + costBook);
+                System.out.println("Book - total cost: " + addOnCalculator.calculateAddOn(costBook));
             });
 
             //Create Thread2 - calculate the add on for a mobile phone costing 300$
             Thread phoneAddOnCalculatorThread = new Thread(() -> {
-                Double cost = 300.0;
-                addOnCalculator.setProductCost(cost);
-                System.out.println("Calculating add on for mobile phone " + cost);
-                System.out.println("Mobile phone - cost: " + addOnCalculator.getProductCost());
-                System.out.println("Mobile phone - delivery charge: " + addOnCalculator.getDeliveryCharge());
-                System.out.println("Mobile phone - tax: " + addOnCalculator.getTax());
-                System.out.println("Mobile phone - discount: " + addOnCalculator.getDiscount());
+                Double costMobile = 300.0;
+                System.out.println("Calculating total cost for mobile phone " + costMobile);
+                System.out.println("Mobile phone - total cost: " + addOnCalculator.calculateAddOn(costMobile));
             });
-            addOnCalculatorThreads.add(phoneAddOnCalculatorThread);
+            bookAddOnCalculatorThread.setName("Stalling thread");
             addOnCalculatorThreads.add(bookAddOnCalculatorThread);
+            addOnCalculatorThreads.add(phoneAddOnCalculatorThread);
             return addOnCalculatorThreads;
     }
 }

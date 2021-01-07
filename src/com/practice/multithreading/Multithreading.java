@@ -1,17 +1,7 @@
 package com.practice.multithreading;
 
-import com.practice.multithreading.domain.MobileInformation;
-import com.practice.multithreading.dto.MobileStatsDTO;
 import com.practice.multithreading.executorservice.ExecutorServiceExample;
-import com.practice.multithreading.future.FutureExample;
 import com.practice.multithreading.racecondition.RaceConditionExample;
-import com.practice.multithreading.service.AmazonMobileInformationProvider;
-import com.practice.multithreading.service.FBMarketPlaceMobileInformationProvider;
-import com.practice.multithreading.service.MobileInformationProviderService;
-import com.practice.multithreading.thread.MobileInformationProviderThread;
-
-import java.util.*;
-import java.util.concurrent.*;
 
 public class Multithreading {
     public static void main(String args[]) throws InterruptedException {
@@ -55,10 +45,10 @@ public class Multithreading {
 
         System.out.println("Executor service");
         ExecutorServiceExample executorServiceExample = new ExecutorServiceExample();
-        executorServiceExample.runExecutorServiceExample();
+        executorServiceExample.runExecutorServiceExampleSavingsAndCheckingAccount();
 
-        System.out.println("Future example");
-        FutureExample futureExample = new FutureExample();
-        futureExample.runFutureExample();
+        //System.out.println("Future example");
+        //FutureExample futureExample = new FutureExample();
+        //futureExample.runFutureExample();
     }
 }

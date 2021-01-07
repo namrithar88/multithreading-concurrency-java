@@ -2,7 +2,7 @@ package com.practice.multithreading.racecondition;
 
 public class AmazonAddOnCalculator {
 
-    private Double productCost;
+    private volatile Double productCost;
 
     public Double calculateAddOn(Double productCost) {
         synchronized (this) {

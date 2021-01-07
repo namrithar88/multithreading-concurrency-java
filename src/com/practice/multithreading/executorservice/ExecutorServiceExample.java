@@ -1,8 +1,14 @@
 package com.practice.multithreading.executorservice;
 
-import java.util.HashMap;
+import com.practice.multithreading.accountmanagement.domain.Account;
+import com.practice.multithreading.accountmanagement.domain.AccountOperation;
+import com.practice.multithreading.accountmanagement.domain.CheckingAccount;
+import com.practice.multithreading.accountmanagement.domain.SavingsAccount;
+import com.practice.multithreading.executorservice.threadmanagement.RunnableTask;
+import com.practice.multithreading.executorservice.threadmanagement.RunnableTaskCreator;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,28 +19,44 @@ import java.util.concurrent.Executors;
  * 3) Call service.execute(task)
  */
 public class ExecutorServiceExample {
-    public void runExecutorServiceExample() {
 
-        //Create a list of product names + cost. We will use ExecutorService to calculate the total cost for these products
-        Map<String, Double> productCostList = new HashMap<>();
-        productCostList.put("Book", 50.0);
-        productCostList.put("Mobile", 300.0);
-        productCostList.put("Shirt", 80.0);
-        productCostList.put("Blender", 40.0);
-        productCostList.put("Dish washer", 330.0);
-        productCostList.put("Knives", 20.0);
-        productCostList.put("TV", 250.0);
-        productCostList.put("Curtain", 7.0);
-        productCostList.put("Faucet", 15.0);
-        productCostList.put("Glasses", 23.0);
+    public void runExecutorServiceExampleSavingsAccount() {
+        Account savingsAccount = new SavingsAccount(1, 500.0);
 
-        //Create executor + thread pool
-        //Alternatively, you can directly create the thread pool using new ThreadPoolExecutor()
+        //Create a list of account operations to be performed.
+        List<AccountOperation> accountOperations = new ArrayList<>();
+        accountOperations.add(new AccountOperation("deposit", 25.0, savingsAccount));
+        accountOperations.add(new AccountOperation("withdraw", 100.0, savingsAccount));
+
+        //Creating thread pool + using executors
         ExecutorService service = Executors.newFixedThreadPool(5);
-        List<RunnableTask> listOfTasks = RunnableTaskCreator.createListOfTasks(productCostList);
-        for(RunnableTask task : listOfTasks) {
+        List<RunnableTask> listOfTasks = RunnableTaskCreator.createRunnableTasks(accountOperations);
+        for (RunnableTask task : listOfTasks) {
             service.execute(task);
         }
         service.shutdown();
+    }
+
+    public void runExecutorServiceExampleSavingsAndCheckingAccount() throws InterruptedException {
+        Account savingsAccount = new SavingsAccount(1, 500.0);
+        Account checkingAccount = new CheckingAccount(4, 200.0);
+
+        //Create a list of account operations to be performed.
+        List<AccountOperation> accountOperations = new ArrayList<>();
+        accountOperations.add(new AccountOperation("deposit", 25.0, savingsAccount));
+        accountOperations.add(new AccountOperation("withdraw", 100.0, savingsAccount));
+        accountOperations.add(new AccountOperation("deposit", 25.0, checkingAccount));
+        accountOperations.add(new AccountOperation("withdraw", 100.0, checkingAccount));
+
+        //Creating thread pool + using executors
+        ExecutorService service = Executors.newFixedThreadPool(5);
+        List<RunnableTask> listOfTasks = RunnableTaskCreator.createRunnableTasks(accountOperations);
+        for (RunnableTask task : listOfTasks) {
+            service.execute(task);
+        }
+        service.shutdown();
+        Thread.currentThread().sleep(11000);
+            System.out.println("Final account balance " + savingsAccount.getAccountType() + " - " + savingsAccount.getAccountBalance());
+            System.out.println("Final account balance " + checkingAccount.getAccountType() + " - " + checkingAccount.getAccountBalance());
     }
 }

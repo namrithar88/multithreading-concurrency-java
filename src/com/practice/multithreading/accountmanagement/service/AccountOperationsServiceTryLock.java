@@ -38,7 +38,7 @@ public class AccountOperationsServiceTryLock {
             System.out.println("Displaying account balance of " + of.getAccountNo() + " " + of.getAccountType() + " : " + of.getAccountBalance());
         }
         else {
-            System.out.println(Thread.currentThread().getName() + " waiting for lock.");
+            System.out.println("Some other thread is modifying the account. Balance may be incorrect : " + of.getAccountBalance());
         }
     }
 }

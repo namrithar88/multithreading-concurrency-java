@@ -1,5 +1,6 @@
 package com.practice.multithreading;
 
+import com.practice.multithreading.deadlock.DeadlockExample;
 import com.practice.multithreading.executorservice.ExecutorServiceExample;
 import com.practice.multithreading.racecondition.RaceConditionExample;
 
@@ -43,12 +44,16 @@ public class Multithreading {
         //RaceConditionExample raceConditionExample = new RaceConditionExample();
         //raceConditionExample.runExample();
 
-        System.out.println("Executor service");
-        ExecutorServiceExample executorServiceExample = new ExecutorServiceExample();
-        executorServiceExample.runExecutorServiceExampleSavingsAndCheckingAccount();
+        //System.out.println("Executor service");
+        //ExecutorServiceExample executorServiceExample = new ExecutorServiceExample();
+        //executorServiceExample.runExecutorServiceExampleSavingsAndCheckingAccount();
 
         //System.out.println("Future example");
         //FutureExample futureExample = new FutureExample();
         //futureExample.runFutureExample();
+
+        System.out.println("Deadlock example");
+        DeadlockExample deadlockExample = new DeadlockExample();
+        deadlockExample.runDeadlockExample();
     }
 }

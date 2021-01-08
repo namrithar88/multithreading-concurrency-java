@@ -3,6 +3,7 @@ package com.practice.multithreading;
 import com.practice.multithreading.deadlock.DeadlockExample;
 import com.practice.multithreading.executorservice.ExecutorServiceExample;
 import com.practice.multithreading.racecondition.RaceConditionExample;
+import com.practice.multithreading.trylock.TryLockExample;
 
 public class Multithreading {
     public static void main(String args[]) throws InterruptedException {
@@ -52,8 +53,12 @@ public class Multithreading {
         //FutureExample futureExample = new FutureExample();
         //futureExample.runFutureExample();
 
-        System.out.println("Deadlock example");
-        DeadlockExample deadlockExample = new DeadlockExample();
-        deadlockExample.runDeadlockExample();
+        //System.out.println("Deadlock example");
+        //DeadlockExample deadlockExample = new DeadlockExample();
+        //deadlockExample.runDeadlockExample();
+
+        System.out.println("Try lock example ");
+        TryLockExample tryLockExample = new TryLockExample();
+        tryLockExample.runExample();
     }
 }

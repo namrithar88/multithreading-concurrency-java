@@ -42,4 +42,10 @@ public class AccountOperationsService {
                 }
             }
     }
+
+    public void displayAccountBalance(Account of) {
+        synchronized(of) {
+            System.out.println("Displaying account balance of " + of.getAccountNo() + " " + of.getAccountType() + " : " + of.getAccountBalance());
+        }
+    }
 }

@@ -29,8 +29,8 @@ public abstract class Account {
     public Double deposit(Double amount) {
         Double currentBalance = this.accountBalance;
         try {
-            Thread.currentThread().sleep(2000);
-            System.out.println("Deposit delayed for 2 secs");
+            Thread.currentThread().sleep(20000);
+            System.out.println("Deposit delayed for 20 secs");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
